@@ -1,0 +1,61 @@
+# Checks and deploys the site to GitHub Pages on every push to main.
+# One-time repo setting: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; never cancel one that is already running.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install the pinned TypeScript
+        run: npm ci
+
+      # Fails if app.js is not exactly what src/app.jsx builds to, or if the smoke test fails.
+      # A broken build therefore never reaches the live site.
+      - name: Verify build and run smoke test
+        run: npm run check
+
+      # Publish only what the browser needs (no src/, tests/, node_modules/).
+      - name: Assemble site
+        run: |
+          mkdir -p _site/vendor
+          cp index.html app.js favicon.svg _site/
+          cp vendor/react.production.min.js vendor/react-dom.production.min.js vendor/LICENSE-react.txt _site/vendor/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

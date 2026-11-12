@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spearhead Duel — AoS 4th</title>
+<meta name="description" content="Two-player turn and checklist helper for Warhammer Age of Sigmar 4th edition Spearhead: army setup, phase checklists, warscrolls, reinforcements, victory points and battlepack rules. Unofficial fan tool.">
+<meta name="theme-color" content="#0a0a14">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  html, body { margin: 0; background: #0a0a14; color: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  #root { min-height: 100vh; }
+  .boot { max-width: 480px; margin: 0 auto; padding: 56px 20px; text-align: center; color: #9aa0b4; font-size: 15px; line-height: 1.5; }
+  .boot strong { color: #f0b429; }
+  .boot.failed { color: #fca5a5; }
+  .site-footer { max-width: 480px; margin: 0 auto; padding: 18px 16px 28px; color: #6b7080; font-size: 11px; line-height: 1.5; text-align: center; }
+</style>
+<noscript><style>#boot-msg { display: none; }</style></noscript>
+<script>
+  // Boot guard: if React or the app fails to load or throws while starting, replace the
+  // "Loading…" text with the reason instead of leaving a blank page. Once the app has
+  // rendered, React has replaced #boot-msg and this does nothing.
+  (function () {
+    function fail(reason) {
+      var el = document.getElementById("boot-msg");
+      if (!el) return;
+      el.parentNode.className = "boot failed";
+      el.textContent = "Spearhead Duel could not start: " + reason + " Try reloading the page.";
+    }
+    window.addEventListener("error", function (e) {
+      var ours = /(^|\/)(app\.js|vendor\/)/, t = e.target;
+      if (t && t.tagName === "SCRIPT") { var src = t.getAttribute("src") || ""; if (ours.test(src)) fail("could not load " + src + "."); return; }
+      if (ours.test(e.filename || "")) fail(String(e.message || "script error") + ".");
+    }, true);
+    window.addEventListener("load", function () {
+      if (!window.React || !window.ReactDOM) fail("React did not load.");
+    });
+  })();
+</script>
+</head>
+<body>
+<div id="root">
+  <div class="boot">
+    <span id="boot-msg">Loading Spearhead Duel…</span>
+    <noscript><strong>JavaScript is required.</strong><br>Spearhead Duel is an interactive app — please enable JavaScript and reload.</noscript>
+  </div>
+</div>
+<footer class="site-footer">
+  Unofficial fan-made tool. Not affiliated with, endorsed or sponsored by Games Workshop.
+  Warhammer, Age of Sigmar, Spearhead and all associated names are trademarks of Games Workshop Ltd.
+  Rules text is paraphrased from the free official Spearhead downloads — if in doubt, the printed cards win.
+</footer>
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

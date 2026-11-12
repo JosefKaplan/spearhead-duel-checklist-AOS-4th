@@ -1,0 +1,17 @@
+# dependencies (only the pinned TypeScript compiler; reinstall with `npm ci`)
+node_modules/
+
+# local Pages preview output of the deploy workflow
+_site/
+
+# editor / OS files
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# logs
+npm-debug.log*
+
+# NOTE: app.js is generated from src/app.jsx but IS committed on purpose:
+# it lets index.html open straight from disk and keeps branch-based Pages deploys working.
