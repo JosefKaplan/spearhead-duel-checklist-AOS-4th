@@ -50,7 +50,7 @@ const ARMIES = {
     ],
     tips: [
       "⚡ Prosecutors: Heralds of Righteousness (passive) — roll 1 extra dice on charge rolls (3D6 added together instead of 2D6)",
-      "🛡 Lord-Vigilant: Deliver Judgement (OPB · Combat) — pick a non-Hero within 12\", it fights twice (Strike-last after 1st fight)",
+      "🛡 Lord-Vigilant: Deliver Judgement (OPB · Combat) — pick a non-Hero wholly within 12\", it fights twice (Strike-last after 1st fight)",
       "🗺 Lord-Vigilant: Plan the Attack (Hero Phase) — pick uncontrolled objective, +1 to hit in combat for friendlies vs enemies contesting it",
       "✨ Lord-Veritant: Cleansing Fires (Hero Phase) — visible enemy within 12\", chant D6: on 3+ roll a dice per model, each 5+ = 1 mortal damage",
       "🐦 Lord-Veritant: Ward (5+) while Gryph-crow token is on the battlefield — don't lose it!",
@@ -379,7 +379,7 @@ const ARMIES = {
         desc:"Subtract 1 from the Rend of melee weapons used for combat attacks that target your general.",
         tip:"Keeps the Ossifector alive against rend-heavy melee." },
       { id:"mc", name:"Mend Constructs", timing:"Your Hero Phase", opb:false,
-        desc:"Pick a friendly unit wholly within 12\" of your general, cast 2D6. On 6+, Heal (D3) the target.",
+        desc:"Pick a visible friendly unit wholly within 12\" of your general, cast 2D6. On 6+, Heal (D3) the target.",
         tip:"Top up your elite constructs — every wound saved matters at this model count." },
       { id:"hot", name:"Helm of Tyranny", timing:"Once Per Battle · End of Your Turn", opb:true,
         desc:"Pick an enemy unit within 12\" of your general and roll a dice. On 3+, subtract 3 from that unit's control score for the rest of the turn.",
@@ -486,7 +486,7 @@ const ARMIES = {
       "👑 Chaos Lord: Iron-Willed Champion (Any Combat Phase) — pick a friendly unit within 12\" (not himself), on 2+ that unit gets +1 to hit this phase",
       "🐎 Chaos Knights: Impaling Charge — +1 Rend on Cursed Lances if they charged (Rend 2 AND Charge +1 Damage)",
       "⚔️ Chaos Warriors: Bringers of Desolation — +1 to wound vs enemies contesting an objective you do NOT control",
-      "🏇 Chaos Chariot: Devastating Charge (Charge Phase) — if it charged, enemy within 1\", on 2+ inflict D3 mortal damage",
+      "🏇 Chaos Chariot: Swift Death (Charge Phase) — if it charged, enemy within 1\", on 2+ inflict D3 mortal damage",
       "⚠️ No unit here has the Reinforcements keyword — this army cannot Call for Reinforcements"
     ]
   },
@@ -518,7 +518,7 @@ const ARMIES = {
       { id:"tph", name:"The Prime Huntress", timing:"Passive", opb:false,
         desc:"The Damage characteristic of Thengavar is 2D6 for attacks that target a Monster.",
         tip:"Only matters against enemy Monsters — check what your opponent brought." },
-      { id:"swtr", name:"Strike with the Tempest's Rage", timing:"Your Movement Phase (as printed on the card)", opb:false,
+      { id:"swtr", name:"Strike with the Tempest's Rage", timing:"Passive", opb:false,
         desc:"Your general has Strike-first if they charged in the same turn.",
         tip:"Yndrasta charging in after her Lightning-Strike Arrival swings first." },
       { id:"dzr", name:"Dazzling Radiance", timing:"Once Per Battle · Your Movement Phase", opb:true,
@@ -654,7 +654,7 @@ const ARMY_EXTRAS = {
       { id:"c_ma", need:"ma", label:"🤸 Murderous Acrobatics: your general can pass through enemy models when charging" }
     ],
     combat: [
-      { id:"c_cis", when:"any", label:"🌑 CLOAKED IN SHADOW (once per turn): a Hero + a different friendly unit with 2+ models — D6 3+ (2+ with Master of Shadows): set the Hero up within 6\" of it, even into combat" },
+      { id:"c_cis", when:"any", label:"🌑 CLOAKED IN SHADOW (once per turn): a Hero + a different friendly unit with 2+ models — D6 3+ (2+ with Master of Shadows): set the Hero up wholly within 6\" of it, even into combat" },
       { id:"c_sk", when:"any", label:"🛡 Deathmaster: Shadowy Killers — attacks against him fail on unmodified hit rolls of 1–4" },
       { id:"c_sb", when:"any", label:"💨 Night Runners: Smoke Bombs (once per turn) — if in combat, on 4+ Retreat at once as if it were your movement phase" },
       { id:"c_fc", need:"fc", when:"any", label:"🗡️ Way of the Fiendish Claw (once per battle): a friendly Hero has Strike-first for the rest of the turn" },
@@ -678,7 +678,7 @@ const ARMY_EXTRAS = {
       { id:"s_hbe", need:"hbe", label:"🔥 Hot-Blooded Endurance: Jorvan can Charge even after Running or Retreating (no Retreat mortal damage)" }
     ],
     combat: [
-      { id:"s_rd", when:"any", label:"🗡️ RANGER DOCTRINES (once per turn): after your general or a non-Hero within 12\" fights, set that unit up within 1\" of a point within 6\" of Jorvan, not in combat" },
+      { id:"s_rd", when:"any", label:"🗡️ RANGER DOCTRINES (once per turn): after your general or a non-Hero unit wholly within 12\" of him fights, set that unit up within 1\" of a point within 6\" of Jorvan, not in combat" },
       { id:"s_uw", when:"any", label:"🛡 Freeguild Gallants: Unbreachable Will — if they didn't charge, pick an enemy in combat: −1 Rend for its attacks on them this turn" },
       { id:"s_bk", need:"bk", when:"any", label:"🐙 Blade of the Kraken (once per battle): double your general's melee Attacks for the rest of the turn" }
     ],
@@ -720,7 +720,7 @@ const ARMY_EXTRAS = {
     ],
     shooting: [
       { id:"h_tb", label:"💥 Tormentor Bombard: Torrent of Ruinous Energy — 30\", Anti-Cavalry & Anti-Infantry (+1 Rend); +1 to hit vs 5+ model units more than 12\" away" },
-      { id:"h_rb", label:"💥 Ruinous Bombardment (once per turn): if all its attacks hit one unit — that unit + 1 more per DPP within 6\": 3+ = −3 control this turn" },
+      { id:"h_rb", label:"💥 Ruinous Bombardment (once per turn): if it shot and ALL its attacks targeted the same unit — that unit + 1 more per DPP within 6\" of it: 3+ = −3 control this turn" },
       { id:"h_de", label:"🔥 Dominator Engine: Immolation Cannons — 8\", 5 attacks (+1 per DPP), Shoot in Combat" },
       { id:"h_sbb", need:"sb", label:"💥 Suppressive Bombardment (once per turn): an Infantry unit damaged by the Bombard rolls 1 fewer charge dice until your next turn" },
       { id:"h_cd", need:"cd", label:"🍷 Chalice of Darkness (once per battle): visible enemy within 12\" of your general takes D3 mortal damage" }
@@ -769,14 +769,14 @@ const ARMY_EXTRAS = {
     ],
     movement: [
       { id:"m_dd", minRound:2, label:"👼 DREAD DESCENT (round 2+): set up the Morghast Archai anywhere more than 6\" from all enemies" },
-      { id:"m_rdm", label:"💠 RELENTLESS DISCIPLINE (once per phase): discipline roll D6 (+1 within 12\" of your general) — 4+ = +2\" Move for a unit" }
+      { id:"m_rdm", label:"💠 RELENTLESS DISCIPLINE (once per phase): discipline roll D6 (+1 if wholly within 12\" of your general) — 4+ = +2\" Move for a unit" }
     ],
     charge: [
       { id:"m_rdc", label:"💠 RELENTLESS DISCIPLINE (once per phase): 4+ = +1 to charge rolls for a unit this phase" }
     ],
     combat: [
       { id:"m_rdf", when:"any", label:"💠 RELENTLESS DISCIPLINE (once per phase): 4+ = +1 to wound OR Ward (5+) for a unit this phase (Peerless Cohesion: a second, different unit)" },
-      { id:"m_sa", when:"any", label:"⚔️ Necropolis Stalkers: Switch Aspects — Blade-parry (−1 to hit vs them) or Destroyer (no ward rolls vs their attacks)" },
+      { id:"m_sa", when:"any", label:"⚔️ Necropolis Stalkers: Switch Aspects — Blade-parry (−1 to hit for combat attacks vs them) or Destroyer (no ward rolls vs their combat attacks)" },
       { id:"m_sp", when:"any", label:"🛡 Immortis Guard: your general has Ward (5+) while within their combat range" }
     ],
     endTurn: [
@@ -795,7 +795,7 @@ const ARMY_EXTRAS = {
     ],
     combat: [
       { id:"k_wa", label:"🐎 Kavalos Deathriders: Wheel About — if they charged, 3+ = move up to their Move through enemy combat ranges (not ending in combat)" },
-      { id:"k_cs", need:"cs", when:"any", label:"⚔️ Cold Savagery: your general in combat and didn't charge — friendly unit wholly within 12\", 3+ = +1 Rend melee (incl. Companion) this turn" },
+      { id:"k_cs", need:"cs", when:"any", label:"⚔️ Cold Savagery: your general in combat and didn't charge — visible friendly unit wholly within 12\", 3+ = +1 Rend melee (incl. Companion) this turn" },
       { id:"k_rco", need:"rco", when:"any", label:"🛡 Reinforced Constructs (once per battle): a friendly unit has Ward (5+) for the rest of the turn" }
     ]
   },
@@ -812,7 +812,7 @@ const ARMY_EXTRAS = {
       { id:"b_obj", label:"👁️ Park a unit on an objective your opponent doesn't control (and out of combat) to trigger Eye of the Gods at the end of the turn" }
     ],
     charge: [
-      { id:"b_dc", label:"🏇 Chaos Chariot: Devastating Charge — if it charged, enemy within 1\", 2+ = D3 mortal damage" }
+      { id:"b_dc", label:"🏇 Chaos Chariot: Swift Death — if it charged, enemy within 1\", 2+ = D3 mortal damage" }
     ],
     combat: [
       { id:"b_ic", label:"🐎 Chaos Knights: Impaling Charge — Cursed Lances get +1 Rend if they charged (plus Charge +1 Damage)" },
@@ -1053,7 +1053,7 @@ const UNIT_CARDS = {
       melee:[ { n:"Artillerist Weapons", a:3, hit:"4+", wnd:"4+", rnd:"–", dmg:1, ab:"–" } ],
       abilities:[
         { name:"Calculated Trajectory", t:"Passive", d:"Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit with 5+ models that is more than 12\" away." },
-        { name:"Ruinous Bombardment", t:"Once Per Turn (Army) · Your Shooting Phase", d:"If this unit shot and all its attacks hit one unit, that unit is the target; also pick enemy units within 6\" of it equal to this unit's DPP. Roll a dice per target — on 3+, subtract 3 from that unit's control score for the rest of the turn." }
+        { name:"Ruinous Bombardment", t:"Once Per Turn (Army) · Your Shooting Phase", d:"If this unit used a Shoot ability this turn and all of its attacks targeted the same enemy unit, that unit is the target; you can also pick enemy units within 6\" of it equal to this unit's DPP. Roll a dice per target — on 3+, subtract 3 from that unit's control score for the rest of the turn." }
       ] },
     { name:"Infernal Cohort (Hashutite Spears)", role:"UNIT", kw:"Infantry, Reinforcements",
       move:'4"', save:"3+", health:1, control:1,
@@ -1101,7 +1101,7 @@ const UNIT_CARDS = {
     { name:"Mortisan Ossifector", role:"GENERAL", kw:"Hero, Wizard, Infantry, Ward (6+)",
       move:'5"', save:"4+", health:5, control:2,
       melee:[ { n:"Ossified Talons", a:3, hit:"4+", wnd:"4+", rnd:"–", dmg:2, ab:"–" } ],
-      abilities:[ { name:"Refined Creations", t:"Your Hero Phase (spell)", d:"Pick a friendly unit wholly within 12\", cast 2D6. On 5+, that unit's melee weapons have Crit (2 Hits) until the start of your next turn." } ] },
+      abilities:[ { name:"Refined Creations", t:"Your Hero Phase (spell)", d:"Pick a visible friendly unit wholly within 12\", cast 2D6. On 5+, that unit's melee weapons have Crit (2 Hits) until the start of your next turn." } ] },
     { name:"Immortis Guard", role:"UNIT", kw:"Infantry, Ward (6+)",
       move:'5"', save:"3+", health:4, control:1,
       melee:[ { n:"Dread Halberd", a:3, hit:"3+", wnd:"3+", rnd:1, dmg:2, ab:"–" } ],
@@ -1109,7 +1109,7 @@ const UNIT_CARDS = {
     { name:"Necropolis Stalkers", role:"UNIT", kw:"Infantry, Ward (6+)",
       move:'6"', save:"4+", health:4, control:1,
       melee:[ { n:"Stalker Blades", a:4, hit:"3+", wnd:"3+", rnd:2, dmg:1, ab:"–" } ],
-      abilities:[ { name:"Switch Aspects", t:"Any Combat Phase", d:"Pick one for the rest of the turn — Blade-parry: −1 to hit rolls for attacks targeting this unit; Destroyer: ward rolls can't be made against damage from this unit's attacks." } ] },
+      abilities:[ { name:"Switch Aspects", t:"Any Combat Phase", d:"Pick one for the rest of the turn — Blade-parry: −1 to hit rolls for combat attacks targeting this unit; Destroyer: ward rolls can't be made against damage from this unit's combat attacks." } ] },
     { name:"Morghast Archai", role:"UNIT", kw:"Infantry, Fly, Ward (6+)",
       move:'10"', save:"3+", health:6, control:2,
       melee:[ { n:"Spirit Weapons", a:3, hit:"3+", wnd:"2+", rnd:2, dmg:3, ab:"–" } ],
@@ -1147,13 +1147,14 @@ const UNIT_CARDS = {
         { name:"Iron-willed Champion", t:"Any Combat Phase", d:"Pick a friendly unit wholly within 12\" of this unit (not this unit) and roll a dice. On a 2+, add 1 to hit rolls for attacks made by the target unit this phase." }
       ] },
     { name:"Chaos Chariot", role:"UNIT", kw:"War Machine",
+      note:"Swift Death is the official name of its charge ability; some fan-made reference sheets print it as 'Devastating Charge'. Same rule.",
       move:'10"', save:"4+", health:7, control:2,
       melee:[
         { n:"Chaos War-flail", a:6, hit:"3+", wnd:"3+", rnd:"–", dmg:1, ab:"–" },
         { n:"Driver's Lashing Whip", a:2, hit:"4+", wnd:"4+", rnd:"–", dmg:1, ab:"–" },
         { n:"Warhorses' Trampling Hooves", a:4, hit:"5+", wnd:"3+", rnd:"–", dmg:1, ab:"Companion" }
       ],
-      abilities:[ { name:"Devastating Charge", t:"Your Charge Phase", d:"If this unit charged this phase, pick an enemy unit within 1\" of it and roll a dice. On a 2+, inflict D3 mortal damage on the target." } ] },
+      abilities:[ { name:"Swift Death", t:"Your Charge Phase", d:"If this unit charged this phase, pick an enemy unit within 1\" of it and roll a dice. On a 2+, inflict D3 mortal damage on the target." } ] },
     { name:"Chaos Warriors", role:"UNIT", kw:"Infantry",
       move:'5"', save:"3+", health:2, control:1,
       melee:[ { n:"Rune-etched Halberd", a:2, hit:"3+", wnd:"3+", rnd:1, dmg:1, ab:"–" } ],
@@ -1353,7 +1354,7 @@ const COA = {
     "Campaign pre-battle: no board choice — the Defender picks territories, then terrain and starting relics as normal. Deployment flips: the Defender sets up everything first, then the Attacker (more than 6\" from enemy territory). The Defender decides who takes the first turn.",
     "Battle 1: the starting relics are the Battered Barricade and the Ulguan Steel Caltrops (a twist that would place the Caltrops places the Manhole instead).",
     "Battle 2: if the totals differ, the player with FEWER total VP chooses Attacker/Defender, and the player with MORE total VP picks the 2 starting relics.",
-    "Battle 3: the player with more total VP is the Defender. The Barrel of Emberstone starts in the centre of the board; the leader picks the other starting relic, which the Defender sets up in their territory.",
+    "Battle 3: if the totals differ, the player with more total VP is the Defender (tied: roll off as normal). The Barrel of Emberstone starts in the centre of the board; the leader picks the other starting relic, which the Defender sets up in their territory.",
     "Result: control the Barrel at the end AND more total VP = major victory · control it with fewer total VP = minor victory · nobody controls it but you have more total VP = minor victory · anything else = draw."
   ]
 };

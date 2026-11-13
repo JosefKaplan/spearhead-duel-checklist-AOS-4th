@@ -202,8 +202,20 @@ are relative. However, it publishes the whole repo and skips the test gate, so p
   - The autumn 2026 Spearhead changes touched only Heartflayer Troupe, Slasher Host,
     Swampskulka Gang and Sunblood Prowlers, none of which are in this app.
   - When GW publishes a new update, check its Spearhead section against the 11 armies above.
-- Known judgement call: Yndrasta's "Strike with the Tempest's Rage" keeps its printed timing,
-  "Your Movement Phase". It looks like a misprint but matches the card.
+- **Source ranking.** GW's official PDFs and rules updates win. Joe's one-page card sheets are
+  fan-made summaries: very accurate, but they contain a few slips. Wahapedia transcribes the
+  official text with errata and is a good second check. Known slips on the sheets, where the
+  app follows the official text instead:
+  - Grey Seer "Wither" targets a visible enemy **within** 13" (the sheet says "wholly within").
+  - Yndrasta's "Strike with the Tempest's Rage" is **Passive** (the sheet's header says
+    "Your Movement Phase").
+  - The Bloodwind Chaos Chariot ability is **"Swift Death"** (the sheet calls it "Devastating
+    Charge"; the rule is the same).
+- Last full audit: 13 November 2026. All 11 armies were compared line by line with the card
+  sheets, then with the official PDFs or Wahapedia. Sentinels of Embergard has only the card
+  sheet as a source. The battlepack rules were re-checked against Wahapedia's Fire and Jade,
+  Sand and Bone and City of Ash pages. GW's October 2026 update PDF could not be opened; its
+  announcement names no army in this app.
 - Sand & Bone objective counts per map were removed because they could not be verified. Don't
   re-add them without a source.
 
